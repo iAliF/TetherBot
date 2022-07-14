@@ -4,7 +4,7 @@ from datetime import datetime
 import pytz
 from rich.logging import RichHandler
 from telegram import ParseMode, TelegramError, Update, ReplyKeyboardMarkup, InlineQueryResultArticle, \
-    InputTextMessageContent
+    InputTextMessageContent, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import Updater, Dispatcher, JobQueue, CallbackContext, CommandHandler, MessageHandler, Filters, \
     InlineQueryHandler
 
@@ -21,6 +21,14 @@ helper = PriceHelper()
 
 PRICE_BUTTON = '💲 Price 💲'
 
+GITHUB_MARKUP = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton('GitHub', 'https://github.com/iAliF/TetherBot')
+        ]
+    ]
+)
+
 
 def start_handler(update: Update, _):
     update.message.reply_text(
@@ -33,7 +41,7 @@ def start_handler(update: Update, _):
 
 
 def price_handler(update: Update, _):
-    update.message.reply_text(helper.generate_text(), parse_mode=ParseMode.MARKDOWN)
+    update.message.reply_text(helper.generate_text(), parse_mode=ParseMode.MARKDOWN, reply_markup=GITHUB_MARKUP)
 
 
 def inline_handler(update: Update, _):
@@ -46,6 +54,7 @@ def inline_handler(update: Update, _):
                 text,
                 ParseMode.MARKDOWN
             ),
+            GITHUB_MARKUP
         )
     ]
     update.inline_query.answer(
