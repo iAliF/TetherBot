@@ -1,5 +1,5 @@
 # Tether Price Bot
-#### A Telegram bot to check the Tether price
+#### A Telegram bot to check the Tether price using the [Tether Price library](https://github.com/iAliF/Tether-Price)
 #### It sends the price automatically to the chat
 #### Also, you can check the price in the PV or from an inline mode
 
