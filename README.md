@@ -15,3 +15,6 @@
 
 ## Usage
 Run the bot using `python bot.py`
+
+## License
+[MIT](https://github.com/iAliF/TetherBot/blob/main/LICENSE)
