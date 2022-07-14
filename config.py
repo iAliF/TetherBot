@@ -19,3 +19,4 @@ PRICE_FORMAT = """
 🔹 *Buy:* `{buy}`
 🔸 *Sell:* `{sell}`
  """
+START_MESSAGE = 'Hey, Welcome to the Tether price bot.'
