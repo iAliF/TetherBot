@@ -16,7 +16,7 @@ PRICE_TEXT = """💲 *Tether Price*
 """
 PRICE_FORMAT = """
 🌐 *{source}*
-🔹 *Buy:* `{buy}`
-🔸 *Sell:* `{sell}`
+🔹 *Buy:* `{buy:,}`
+🔸 *Sell:* `{sell:,}`
  """
 START_MESSAGE = 'Hey, Welcome to the Tether price bot.'
