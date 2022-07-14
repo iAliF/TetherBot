@@ -10,6 +10,9 @@ import config
 class PriceHelper:
     SOURCES = (ArzPaya, Bitbarg, Hamtapay, Wallex)
 
+    last_time: int = None
+    last_text: str = None
+
     def __init__(self) -> None:
         mngr = SourceManager()
         for source in self.SOURCES:
@@ -18,6 +21,10 @@ class PriceHelper:
         self._manager = mngr
 
     def generate_text(self) -> str:
+        now = datetime.now(pytz.timezone(config.TIMEZONE))
+        if self.last_time is not None and now.minute == self.last_time:
+            return self.last_text
+
         p_list = self._manager.get_prices_list()
         prices = ''
 
@@ -28,9 +35,11 @@ class PriceHelper:
                 sell=price.sell
             )
 
-        now = datetime.now(pytz.timezone(config.TIMEZONE))
-        return config.PRICE_TEXT.format(
+        self.last_time = now.minute
+        self.last_text = config.PRICE_TEXT.format(
             date=now.strftime('%Y/%m/%d'),
             time=now.strftime('%H:%M'),
             prices=prices
         )
+
+        return self.last_text
